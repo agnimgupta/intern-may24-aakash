@@ -1,10 +1,10 @@
-import { StyleSheet, ScrollView, Dimensions, Text } from 'react-native';
+import { StyleSheet, Dimensions, View, ScrollView } from 'react-native';
 import React from 'react';
 import Navbar from '../Components/ForumMain/Navbar';
 import TopFeedSearchButtons from '../Components/ForumMain/TopFeedSearchButtons';
-import FloatBtnAskQuestion from '../Components/ForumMain/FloatBtnAskQuestion';
-import TextInputType2 from '../Helpers/AskQuestion/TextInputType2';
-import ProfileAndQuestion from '../Components/ForumMain/ProfileAndQuestion';
+// import FloatBtnAskQuestion from '../Components/ForumMain/FloatBtnAskQuestion';
+import ProfileQuestionAnswer from '../Components/ForumMain/ProfileQuestionAnswer';
+import { categories } from '../../categories';
 const {height, width} = Dimensions.get('window');
 
 const ForumMainPage = ({navigation}) => {
@@ -13,18 +13,17 @@ const ForumMainPage = ({navigation}) => {
       <Navbar />
       <TopFeedSearchButtons />
 
-      <ScrollView
-        style={{backgroundColor: '#fff'}}
+    <ScrollView>
+      {categories.map((category) => {
+        return <View
+        key={category.id}
+        style={{backgroundColor: '#fff', marginBottom:3}}
         showsVerticalScrollIndicator={false}>
-        <ProfileAndQuestion />
-        <TextInputType2 />
-        <TextInputType2 />
-        <TextInputType2 />
-        <TextInputType2 />
-        <TextInputType2 />
-        <Text>AkashAjahshahha</Text>
-        <FloatBtnAskQuestion navigation={navigation} />
+          <ProfileQuestionAnswer index={category.id} navigation={navigation} />
+        </View>;
+      })}
       </ScrollView>
+      {/* <FloatBtnAskQuestion navigation={navigation} /> */}
     </>
   );
 };
