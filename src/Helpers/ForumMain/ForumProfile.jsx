@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
-const ForumProfile = () => {
+const ForumProfile = ({setisCliked, isCliked}) => {
+  
   return (
     <View style={styles.profileBox}>
         <View style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
@@ -15,13 +16,13 @@ const ForumProfile = () => {
           <View style={styles.nameContainer}>
             <Text style={styles.name}>Mathew Adams</Text>
             <View style={{display:'flex', flexDirection:'row'}}>
-              <Text style={styles.days}>5 days ago  •</Text>
-              <Text style={styles.following}> Following</Text>
+              <Text style={styles.days}>5 days ago   •</Text>
+              <Text style={styles.following}>  Following</Text>
             </View>
           </View>
         </View>
         <View>
-          <FontAwesomeIcon icon={faEllipsisV} />
+          <Pressable onPress={() => setisCliked(!isCliked)}><FontAwesomeIcon icon={faEllipsisV} /></Pressable>
         </View>
       </View>
   )

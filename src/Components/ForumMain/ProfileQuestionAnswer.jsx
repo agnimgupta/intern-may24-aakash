@@ -1,5 +1,5 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native';
-import React from 'react';
+import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
 
 import ForumProfile from '../../Helpers/ForumMain/ForumProfile';
 import ForumQuestion from '../../Helpers/ForumMain/ForumQuestion';
@@ -7,20 +7,48 @@ import ForumAnswerBox from '../../Helpers/ForumMain/ForumAnswerBox';
 import LoveShareComment from '../../Helpers/ForumMain/LoveShareComment';
 
 const ProfileQuestionAnswer = ({index, navigation}) => {
+  const [isCliked, setisCliked] = useState(false);
+  
   return (
     <>
-    <View style={styles.mainContainer}>
-      <ForumProfile />
-      <ForumQuestion index={index} />
-      <ForumAnswerBox />
+      <Pressable onPress={() => setisCliked(false)} style={styles.mainContainer}>
+        <ForumProfile isCliked={isCliked} setisCliked={setisCliked} />
+        <ForumQuestion index={index} />
+        <ForumAnswerBox />
 
-      {index%2==0 ? <View style={{width:'100%', alignItems:'center', marginTop:15}}>
-        <Pressable onPress={() => navigation.navigate("ViewAllReplies")}><Text style={{fontFamily:'Nunito-Bold', fontSize:11, color:'#3A643B'}}>View All Replies</Text></Pressable>
-      </View>:<View></View>}
+        {index % 2 == 0 ? (
+          <View style={{width: '100%', alignItems: 'center', marginTop: 15}}>
+            <Pressable onPress={() => navigation.navigate('ViewAllReplies')}>
+              <Text
+                style={{
+                  fontFamily: 'Nunito-Bold',
+                  fontSize: 11,
+                  color: '#3A643B',
+                }}>
+                View All Replies
+              </Text>
+            </Pressable>
+          </View>
+        ) : (
+          <View></View>
+        )}
+      </Pressable>
+      <LoveShareComment />
 
-      
-    </View>
-    <LoveShareComment />
+      {isCliked ? <View style={styles.floatingBox}>
+        <View style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+          <Image style={styles.boxImage} source={require('../../assets/Images/SavePost.png')} />
+          <Text style={[styles.boxText, {marginRight:14}]}>Save Post</Text>
+        </View>
+        <View style={[styles.miniBox, ]}>
+          <Image style={styles.boxImage} source={require('../../assets/Images/AddAnswer.png')} />
+          <Text style={[styles.boxText,{marginRight:4}]}>Add Answer</Text>
+        </View>
+        <View style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+          <Image style={styles.boxImage} source={require('../../assets/Images/Report.png')} />
+          <Text style={[styles.boxText,{marginRight:35}]}>Report</Text>
+        </View>
+      </View>: <View></View>}
     </>
   );
 };
@@ -32,4 +60,43 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 28,
   },
+  floatingBox: {
+    height: 105,
+    width: 150,
+    backgroundColor: '#FFFFFF',
+    position: 'absolute',
+    top: 30,
+    right: 32,
+    borderRadius: 8,
+    elevation: 5,
+    shadowRadius: 2,
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowColor: '#000000',
+    shadowOpacity: 1.0,
+    paddingVertical:2,
+    display:'flex',
+    justifyContent:'space-around'
+  },
+  miniBox :{
+    display:'flex',
+    flexDirection: 'row',
+    width:'100%',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    height:32,
+  },
+  boxImage: {
+    height:16,
+    width:15,
+    resizeMode:'contain'
+  },
+  boxText:{
+    fontFamily:'Nunito-Regular',
+    fontSize:12,
+    color:'#1E1E1E',
+  }
+ 
 });

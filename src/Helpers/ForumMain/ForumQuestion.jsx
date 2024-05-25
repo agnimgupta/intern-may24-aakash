@@ -6,7 +6,7 @@ const ForumQuestion = ({index}) => {
     <View style={styles.mainContainer}>
       <Text style={styles.question}>Q. Can Ayurveda help with stress and mental health issues? </Text>
 
-      <View style={{display:'flex', flexDirection:'row', alignItems:'center',marginTop:10}}>
+      <View style={{display:'flex', flexDirection:'row', alignItems:'center',marginTop:15}}>
         <Text style={styles.replies}>Replies </Text>
         {index%2!==0 ? <Text style={styles.reply}> • 1 reply</Text> : <Text style={styles.reply}> • 3 replies</Text> }
       </View>

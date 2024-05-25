@@ -1,11 +1,13 @@
-import { StyleSheet, Image, View, Dimensions } from 'react-native'
+import { StyleSheet, View, Dimensions, ImageBackground } from 'react-native'
 import React from 'react'
 const {height, width} = Dimensions.get("window")
 
 const Navbar = () => {
   return (
     <View style={styles.mainContainer}>
-      <Image style={styles.mainImage} source={require('../../assets/Images/NavBarForumImage.png')}/>
+      <ImageBackground resizeMethod='cover' style={styles.mainImage} source={require('../../assets/Images/NavBarForumImage.png')}>
+      </ImageBackground>
+
     </View>
   )
 }
@@ -17,10 +19,15 @@ const styles = StyleSheet.create({
         alignItems:'center',
         width:width,
         backgroundColor:'white',
+        height:190,
     },
     mainImage:{
-        height:195,
-        resizeMode:'contain'
+        
+        flex:1,
+        width:'100%'
+
     },
+
+    
     
 })

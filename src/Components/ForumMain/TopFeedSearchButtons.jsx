@@ -35,12 +35,12 @@ const TopFeedSearchButtons = () => {
       <View style={styles.linesContainer}>
         <View
           style={[
-            {borderWidth: 1, width: '50%'},
+            {borderTopWidth: 1.5, width: '50%'},
             index === 1 ? {borderColor: '#3A643B'} : {borderColor: '#B6B6B6'},
           ]}></View>
         <View
           style={[
-            {borderWidth: 1, width: '50%'},
+            {borderTopWidth: 1.5, width: '50%'},
             index === 2 ? {borderColor: '#3A643B'} : {borderColor: '#B6B6B6'},
           ]}></View>
       </View>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 10,
     backgroundColor: 'white',
+    zIndex:-1,
   },
   buttonContainers: {
     display: 'flex',

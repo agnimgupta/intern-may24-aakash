@@ -3,10 +3,10 @@ import React from 'react';
 
 const FloatBtnAskQuestion = ({navigation}) => {
   return (
-    <View style={{height:"100%"}}>
+    <View>
       <Pressable
         onPress={() => navigation.navigate('AskQuestion')}
-        style={styles.mainContainer}>
+        style={styles.boxContainer}>
         <Text style={styles.btnText}>Ask Question</Text>
       </Pressable>
     </View>
@@ -16,7 +16,7 @@ const FloatBtnAskQuestion = ({navigation}) => {
 export default FloatBtnAskQuestion;
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  boxContainer: {
     width: 141,
     height: 40,
     backgroundColor: '#3A643B',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position:'absolute',
-    top:400,
+    bottom:22,
     right:30,
   },
   btnText: {
