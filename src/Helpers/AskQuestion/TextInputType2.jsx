@@ -1,7 +1,18 @@
 import { StyleSheet, View, TextInput, Text } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 
-const TextInputType2 = () => {
+const TextInputType2 = ({name, placeholder}) => {
+  const [text, setText] = useState('');
+  const [wordCount, setWordCount] = useState(0);
+
+  const handleTextChange = input => {
+    const words = input.trim().split(/\s+/);
+    if (words.length <= 12) {
+      setText(input);
+      setWordCount(words[0] === '' ? 0 : words.length);
+    }
+  };
+
   return (
     <View style={styles.mainContainer}>
       <TextInput
@@ -9,15 +20,20 @@ const TextInputType2 = () => {
         numberOfLines={5}
         textAlignVertical="top"
         style={styles.textInput}
-        placeholder="Eg. #doctors, #ayurveda"
+        placeholder={placeholder}
         placeholderTextColor="#B6B6B6"
+        onChangeText={handleTextChange}
+        value={text}
       />
       <View style={{display: 'flex', flexDirection: 'column-reverse'}}>
-        <Text style={styles.wordCount}>50 words</Text>
+
+        {wordCount > 0 ? (
+          <Text style={[styles.wordCount, {marginLeft:25}]}>{wordCount}/50</Text>
+        ) : (
+          <Text style={styles.wordCount}>50 words</Text>
+        )}
       </View>
-      <Text style={styles.headingText}>
-        Add Description
-      </Text>
+      <Text style={styles.headingText}>{name}</Text>
     </View>
   );
 };
@@ -41,13 +57,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'auto',
     marginVertical: 10,
-    fontFamily:'Nunito-Medium',
+    fontFamily: 'Nunito-Medium',
   },
   wordCount: {
     color: '#B6B6B6',
     fontSize: 8,
-    marginBottom:14,
-    fontFamily:'Nunito-Medium',
+    marginBottom: 11,
+    fontFamily: 'Nunito-Medium',
+    marginLeft:6,
   },
   headingText: {
     position: 'absolute',
@@ -56,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 5,
     color: '#000',
-    fontFamily:'Nunito-Medium',
-    fontSize:12,
+    fontFamily: 'Nunito-Medium',
+    fontSize: 12,
   },
 });

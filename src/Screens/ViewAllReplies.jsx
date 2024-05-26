@@ -11,21 +11,30 @@ import ViewAllRepliesNavBar from '../Components/AllReplies/ViewAllRepliesNavBar'
 import ViewAllRepliesProfile from '../Components/AllReplies/ViewAllRepliesProfile';
 import ViewAllRepliesQuestion from '../Components/AllReplies/ViewAllRepliesQuestion';
 import ViewAllRepliesAnswers from '../Components/AllReplies/ViewAllRepliesAnswers';
+import { useRoute } from '@react-navigation/native';
 
-const ViewAllReplies = () => {
+const ViewAllReplies = ({navigation}) => {
+
+  const route = useRoute();
+  const {profileData, questionData} = route.params;
+
   const [answerButtonClicked, setanswerButtonClicked] = useState(false);
+
+  
+
+
   return (
     <>
       <View>
-        <ViewAllRepliesNavBar />
+        <ViewAllRepliesNavBar navigation={navigation} />
 
         <Pressable onPress={() =>setanswerButtonClicked(false)}>
-          <ViewAllRepliesProfile answerButtonClicked={answerButtonClicked} setanswerButtonClicked={setanswerButtonClicked} />
-          <ViewAllRepliesQuestion />
+          <ViewAllRepliesProfile answerButtonClicked={answerButtonClicked} setanswerButtonClicked={setanswerButtonClicked} profileData={profileData} />
+          <ViewAllRepliesQuestion questionData={questionData} />
         </Pressable>
 
-        {answerButtonClicked ? <View style={styles.floatingBox}>
-          <View
+        {answerButtonClicked ? <Pressable style={styles.floatingBox}>
+          <Pressable
             style={[
               styles.miniBox,
               {borderBottomWidth: 1, borderBottomColor: '#EDEDED'},
@@ -35,15 +44,15 @@ const ViewAllReplies = () => {
               source={require('../assets/Images/SavePost.png')}
             />
             <Text style={[styles.boxText, {marginRight: 14}]}>Save Post</Text>
-          </View>
-          <View style={[styles.miniBox]}>
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('AddAnswer',{ profileData, questionData})}  style={[styles.miniBox]}>
             <Image
               style={styles.boxImage}
               source={require('../assets/Images/AddAnswer.png')}
             />
             <Text style={[styles.boxText, {marginRight: 4}]}>Add Answer</Text>
-          </View>
-          <View
+          </Pressable>
+          <Pressable
             style={[
               styles.miniBox,
               {borderTopWidth: 1, borderTopColor: '#EDEDED'},
@@ -53,8 +62,8 @@ const ViewAllReplies = () => {
               source={require('../assets/Images/Report.png')}
             />
             <Text style={[styles.boxText, {marginRight: 35}]}>Report</Text>
-          </View>
-        </View>: <View></View>}
+          </Pressable>
+        </Pressable>: <View></View>}
       </View>
 
 

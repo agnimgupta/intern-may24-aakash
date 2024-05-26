@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ProceedButton = () => {
+const ProceedButton = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
       <Text style={{color:'white', fontSize:15, fontFamily:'Nunito-SemiBold'}}>Save and proceed</Text>

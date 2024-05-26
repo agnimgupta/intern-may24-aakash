@@ -8,7 +8,7 @@ const AddQuestionInputs = () => {
   return (
     <View>
       <TextInputType1 />
-      <TextInputType2 />
+      <TextInputType2 placeholder="Eg. #doctors, #ayurveda" name="Add Description" />
       <UploadDocumentInput/>
     </View>
   )

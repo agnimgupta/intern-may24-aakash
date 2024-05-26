@@ -1,12 +1,14 @@
-import { StyleSheet, View, Image, Text } from 'react-native';
-import React from 'react';
+import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import AllRepliesLoveShComm from '../../Helpers/AllReplies/AllRepliesLoveShComm';
 
 const ViewAllRepliesAnswers = () => {
+
+  const [isClicked, setIsCliked] = useState(false);
   return (
-    <View style={styles.mainContainer}>
+    <Pressable onPress={() => setIsCliked(false)} style={styles.mainContainer}>
       <View style={styles.profileBox}>
         <View style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
           
@@ -19,17 +21,32 @@ const ViewAllRepliesAnswers = () => {
               <Text style={styles.days}>5 days ago</Text>
           </View>
         </View>
-        <View>
+        <Pressable onPress={() => setIsCliked(!isClicked)}>
           <FontAwesomeIcon icon={faEllipsisV} />
-        </View>
+        </Pressable>
       </View>
 
       <View style={styles.answerBox}>
         <Text style={styles.answerBoxText}>Ans. Ayurveda offers holistic approaches like herbal remedies, lifestyle adjustments, and relaxation techniques to alleviate stress and support mental well-being. It emphasizes personalized care and natural methods to address the root causes of mental health challenges, promoting balance and harmony in mind and body.</Text>
       </View>
-
       <AllRepliesLoveShComm/>
-    </View>
+
+
+      {isClicked ? <View style={styles.floatingBox}>
+        <View style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+          <Image style={[styles.boxImage, {height:15, width:11}]} source={require('../../assets/Images/SaveImageLong.png')} />
+          <Text style={[styles.boxText, {marginRight:8}]}>Save Answer</Text>
+        </View>
+        <View style={[styles.miniBox, ]}>
+          <Image style={[styles.boxImage, {width:20, height:13}]} source={require('../../assets/Images/Flower.png')} />
+          <Text style={[styles.boxText,{marginRight:30}]}>Send Tips</Text>
+        </View>
+        <View style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+          <Image style={[styles.boxImage, {width:16, height:15}]} source={require('../../assets/Images/Report.png')} />
+          <Text style={[styles.boxText,{marginRight:45}]}>Report</Text>
+        </View>
+      </View> : <View></View>}
+    </Pressable>
   )
 }
 
@@ -78,5 +95,44 @@ const styles = StyleSheet.create({
         fontSize:13,
         color:'#000000',
       },
+
+
+      floatingBox: {
+        height: 105,
+        width: 150,
+        backgroundColor: '#FFFFFF',
+        position: 'absolute',
+        top: 16,
+        right: 18,
+        borderRadius: 8,
+        elevation: 5,
+        shadowRadius: 2,
+        shadowOffset: {
+          width: 0,
+          height: -3,
+        },
+        shadowColor: '#000000',
+        shadowOpacity: 1.0,
+        paddingVertical:2,
+        display:'flex',
+        justifyContent:'space-around'
+      },
+      miniBox :{
+        display:'flex',
+        flexDirection: 'row',
+        width:'100%',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        height:32,
+      },
+      boxImage: {
+        resizeMode:'contain'
+      },
+      boxText:{
+        fontFamily:'Nunito-Regular',
+        fontSize:12,
+        color:'#1E1E1E',
+      }
+     
 
 })

@@ -3,7 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
-const ViewAllRepliesProfile = ({answerButtonClicked, setanswerButtonClicked}) => {
+const ViewAllRepliesProfile = ({answerButtonClicked, setanswerButtonClicked, profileData}) => {
   
   return (
     
@@ -15,10 +15,10 @@ const ViewAllRepliesProfile = ({answerButtonClicked, setanswerButtonClicked}) =>
             source={require('../../assets/Images/Profile.png')}
           />
           <View style={styles.nameContainer}>
-            <Text style={styles.name}>Mathew Adams</Text>
+            <Text style={styles.name}>{profileData.name}</Text>
             <View style={{display: 'flex', flexDirection: 'row'}}>
-              <Text style={styles.days}>5 days ago •</Text>
-              <Text style={styles.following}> Following</Text>
+              <Text style={styles.days}>{profileData.daysAgo} days ago   •  </Text>
+              <Text style={styles.following}>{profileData.following ? `Following`: `Follow`}</Text>
             </View>
           </View>
         </View>

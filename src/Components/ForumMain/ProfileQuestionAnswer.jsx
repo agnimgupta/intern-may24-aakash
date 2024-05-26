@@ -8,17 +8,25 @@ import LoveShareComment from '../../Helpers/ForumMain/LoveShareComment';
 
 const ProfileQuestionAnswer = ({index, navigation}) => {
   const [isCliked, setisCliked] = useState(false);
+
+  const profileData = {
+    name: 'Mathew Adams',
+    following: true,
+    daysAgo: 5,
+  };
+
+  const questionData = 'Q. Can Ayurveda help with stress and mental health issues?';
   
   return (
     <>
       <Pressable onPress={() => setisCliked(false)} style={styles.mainContainer}>
-        <ForumProfile isCliked={isCliked} setisCliked={setisCliked} />
-        <ForumQuestion index={index} />
+        <ForumProfile isCliked={isCliked} setisCliked={setisCliked} profileData={profileData} />
+        <ForumQuestion index={index} questionData={questionData} />
         <ForumAnswerBox />
 
         {index % 2 == 0 ? (
           <View style={{width: '100%', alignItems: 'center', marginTop: 15}}>
-            <Pressable onPress={() => navigation.navigate('ViewAllReplies')}>
+            <Pressable onPress={() => navigation.navigate('ViewAllReplies', {profileData, questionData})}>
               <Text
                 style={{
                   fontFamily: 'Nunito-Bold',
@@ -35,20 +43,20 @@ const ProfileQuestionAnswer = ({index, navigation}) => {
       </Pressable>
       <LoveShareComment />
 
-      {isCliked ? <View style={styles.floatingBox}>
-        <View style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+      {isCliked ? <Pressable style={styles.floatingBox}>
+        <Pressable style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/SavePost.png')} />
           <Text style={[styles.boxText, {marginRight:14}]}>Save Post</Text>
-        </View>
-        <View style={[styles.miniBox, ]}>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate('AddAnswer', {profileData,questionData})} style={[styles.miniBox, ]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/AddAnswer.png')} />
           <Text style={[styles.boxText,{marginRight:4}]}>Add Answer</Text>
-        </View>
-        <View style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+        </Pressable>
+        <Pressable style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/Report.png')} />
           <Text style={[styles.boxText,{marginRight:35}]}>Report</Text>
-        </View>
-      </View>: <View></View>}
+        </Pressable>
+      </Pressable>: <View></View>}
     </>
   );
 };
