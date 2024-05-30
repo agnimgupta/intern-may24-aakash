@@ -5,6 +5,7 @@ import {
   View,
   Image,
   Pressable,
+  Modal
 } from 'react-native';
 import React, { useState } from 'react';
 import ViewAllRepliesNavBar from '../Components/AllReplies/ViewAllRepliesNavBar';
@@ -12,6 +13,8 @@ import ViewAllRepliesProfile from '../Components/AllReplies/ViewAllRepliesProfil
 import ViewAllRepliesQuestion from '../Components/AllReplies/ViewAllRepliesQuestion';
 import ViewAllRepliesAnswers from '../Components/AllReplies/ViewAllRepliesAnswers';
 import { useRoute } from '@react-navigation/native';
+import FloatBtnAskQuestion from '../Components/ForumMain/FloatBtnAskQuestion';
+import BottomSheetButtons from '../Helpers/BottomSheet/BottomSheetButtons';
 
 const ViewAllReplies = ({navigation}) => {
 
@@ -19,17 +22,20 @@ const ViewAllReplies = ({navigation}) => {
   const {profileData, questionData} = route.params;
 
   const [answerButtonClicked, setanswerButtonClicked] = useState(false);
+  const [visible, setVisible] = useState(false);
+  
+  const [button, showButton] = useState(false);
 
   
 
 
   return (
-    <>
+    <View style={{flex:1}}>
       <View>
         <ViewAllRepliesNavBar navigation={navigation} />
 
         <Pressable onPress={() =>setanswerButtonClicked(false)}>
-          <ViewAllRepliesProfile answerButtonClicked={answerButtonClicked} setanswerButtonClicked={setanswerButtonClicked} profileData={profileData} />
+          <ViewAllRepliesProfile answerButtonClicked={answerButtonClicked} setanswerButtonClicked={setanswerButtonClicked} profileData={profileData} setVisible={setVisible} />
           <ViewAllRepliesQuestion questionData={questionData} />
         </Pressable>
 
@@ -53,6 +59,7 @@ const ViewAllReplies = ({navigation}) => {
             <Text style={[styles.boxText, {marginRight: 4}]}>Add Answer</Text>
           </Pressable>
           <Pressable
+          onPress={() => setVisible(true)}
             style={[
               styles.miniBox,
               {borderTopWidth: 1, borderTopColor: '#EDEDED'},
@@ -79,11 +86,105 @@ const ViewAllReplies = ({navigation}) => {
           }}>
           All replies
         </Text>
-        <ViewAllRepliesAnswers />
-        <ViewAllRepliesAnswers />
-        <ViewAllRepliesAnswers />
+        <ViewAllRepliesAnswers setVisible={setVisible} />
+        <ViewAllRepliesAnswers setVisible={setVisible} />
+        <ViewAllRepliesAnswers setVisible={setVisible} />
       </ScrollView>
-    </>
+      <Pressable onPress={() => navigation.navigate('AddAnswer', {profileData, questionData})}><FloatBtnAskQuestion navigation={navigation} name="Answer" /></Pressable>
+
+      <Modal transparent={true} animationType="slide" visible={visible}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Pressable onPress={() => setVisible(false)} style={{paddingTop: 10, alignItems: 'center'}}>
+              <View
+                style={{
+                  borderTopWidth: 2,
+                  borderColor: '#D6D6D6',
+                  width: 40,
+                }}></View>
+            </Pressable>
+            <View style={{marginTop: 15}}>
+              <Text
+                style={{
+                  fontFamily: 'Nunito-SemiBold',
+                  fontSize: 16,
+                  color: '#000000',
+                }}>
+                Report
+              </Text>
+
+              <Text
+                style={{
+                  fontFamily: 'Nunito-Medium',
+                  fontSize: 15,
+                  color: '#000000',
+                  marginTop: 14,
+                }}>
+                Please select the appropriate problem to continue
+              </Text>
+            </View>
+
+            <View style={{width: '76%'}}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <BottomSheetButtons name="Offensive" button={button} showButton={showButton} />
+                <BottomSheetButtons name="Inaccurate" button={button} showButton={showButton} />
+              </View>
+            </View>
+
+            <View style={{width: '76%'}}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <BottomSheetButtons name="Plagiarism" button={button} showButton={showButton} />
+                <BottomSheetButtons name="Violation" button={button} showButton={showButton}  />
+              </View>
+            </View>
+
+            <View style={{width: '80%'}}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <BottomSheetButtons name="Disrespectful" button={button} showButton={showButton} />
+                <BottomSheetButtons name="Terrorism" button={button} showButton={showButton} />
+              </View>
+            </View>
+
+            <View style={{width: '80%'}}>
+              <View
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <BottomSheetButtons name="Inappropriate Content" button={button} showButton={showButton}  />
+              </View>
+            </View>
+
+            {button ? <Pressable style={styles.buttonContainer}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 15,
+                  fontFamily: 'Nunito-SemiBold',
+                }}>
+                Submit
+              </Text>
+            </Pressable> : <View></View>}
+          </View>
+        </View>
+      </Modal>
+    </View>
   );
 };
 
@@ -128,5 +229,36 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
     fontSize: 12,
     color: '#1E1E1E',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: '#00000020',
+  },
+  modalView: {
+    paddingHorizontal: 35,
+    backgroundColor: 'white',
+    height: '54%',
+    width: '100%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  buttonContainer: {
+    height: 58,
+    width: '100%',
+    backgroundColor: '#3A643B',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 20,
+    marginTop: 45,
   },
 });

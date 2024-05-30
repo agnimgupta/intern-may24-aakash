@@ -6,7 +6,7 @@ import ForumQuestion from '../../Helpers/ForumMain/ForumQuestion';
 import ForumAnswerBox from '../../Helpers/ForumMain/ForumAnswerBox';
 import LoveShareComment from '../../Helpers/ForumMain/LoveShareComment';
 
-const ProfileQuestionAnswer = ({index, navigation}) => {
+const ProfileQuestionAnswer = ({index, navigation, setVisible}) => {
   const [isCliked, setisCliked] = useState(false);
 
   const profileData = {
@@ -52,7 +52,7 @@ const ProfileQuestionAnswer = ({index, navigation}) => {
           <Image style={styles.boxImage} source={require('../../assets/Images/AddAnswer.png')} />
           <Text style={[styles.boxText,{marginRight:4}]}>Add Answer</Text>
         </Pressable>
-        <Pressable style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+        <Pressable onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/Report.png')} />
           <Text style={[styles.boxText,{marginRight:35}]}>Report</Text>
         </Pressable>

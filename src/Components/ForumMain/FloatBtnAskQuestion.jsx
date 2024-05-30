@@ -1,14 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-const FloatBtnAskQuestion = ({navigation}) => {
+const FloatBtnAskQuestion = ({navigation, name}) => {
   return (
-    <View>
-      <Pressable
-        onPress={() => navigation.navigate('AskQuestion')}
-        style={styles.boxContainer}>
-        <Text style={styles.btnText}>Ask Question</Text>
-      </Pressable>
+    <View style={styles.boxContainer}>
+      <Text style={styles.btnText}>{name}</Text>
     </View>
   );
 };
@@ -23,9 +19,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    position:'absolute',
-    bottom:22,
-    right:30,
+    position: 'absolute',
+    bottom: 22,
+    right: 30,
   },
   btnText: {
     fontFamily: 'Nunito-Regular',

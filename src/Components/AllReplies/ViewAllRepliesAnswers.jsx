@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import AllRepliesLoveShComm from '../../Helpers/AllReplies/AllRepliesLoveShComm';
 
-const ViewAllRepliesAnswers = () => {
+const ViewAllRepliesAnswers = ({setVisible}) => {
 
   const [isClicked, setIsCliked] = useState(false);
   return (
@@ -33,18 +33,18 @@ const ViewAllRepliesAnswers = () => {
 
 
       {isClicked ? <View style={styles.floatingBox}>
-        <View style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+        <Pressable style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
           <Image style={[styles.boxImage, {height:15, width:11}]} source={require('../../assets/Images/SaveImageLong.png')} />
           <Text style={[styles.boxText, {marginRight:8}]}>Save Answer</Text>
-        </View>
-        <View style={[styles.miniBox, ]}>
+        </Pressable>
+        <Pressable style={[styles.miniBox, ]}>
           <Image style={[styles.boxImage, {width:20, height:13}]} source={require('../../assets/Images/Flower.png')} />
           <Text style={[styles.boxText,{marginRight:30}]}>Send Tips</Text>
-        </View>
-        <View style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+        </Pressable>
+        <Pressable onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
           <Image style={[styles.boxImage, {width:16, height:15}]} source={require('../../assets/Images/Report.png')} />
           <Text style={[styles.boxText,{marginRight:45}]}>Report</Text>
-        </View>
+        </Pressable>
       </View> : <View></View>}
     </Pressable>
   )
