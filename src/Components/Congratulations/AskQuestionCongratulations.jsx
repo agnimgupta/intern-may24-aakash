@@ -1,4 +1,4 @@
-import { ImageBackground, Pressable, StyleSheet, View, Text } from 'react-native';
+import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 const AskQuestionCongratulations = ({navigation}) => {
@@ -38,7 +38,7 @@ const AskQuestionCongratulations = ({navigation}) => {
       </View>
 
       <View style={{marginTop: 5}}>
-        <Pressable style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.buttonContainer}>
           <Text
             style={{
               color: 'white',
@@ -47,13 +47,13 @@ const AskQuestionCongratulations = ({navigation}) => {
             }}>
             View your question
           </Text>
-        </Pressable>
+        </TouchableOpacity>
 
-        <Pressable
+        <TouchableOpacity
           onPress={() => navigation.navigate('HomeScreen')}
           style={{width: '100%', alignItems: 'center', marginTop: 25}}>
           <Text style={styles.feedText}>Go to Feed</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </View>
   );

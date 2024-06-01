@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import { StyleSheet, View, Text, Pressable, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
 import ForumProfile from '../../Helpers/ForumMain/ForumProfile';
@@ -44,18 +44,18 @@ const ProfileQuestionAnswer = ({index, navigation, setVisible}) => {
       <LoveShareComment />
 
       {isCliked ? <Pressable style={styles.floatingBox}>
-        <Pressable style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+        <TouchableOpacity style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/SavePost.png')} />
           <Text style={[styles.boxText, {marginRight:14}]}>Save Post</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('AddAnswer', {profileData,questionData})} style={[styles.miniBox, ]}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('AddAnswer', {profileData,questionData})} style={[styles.miniBox, ]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/AddAnswer.png')} />
           <Text style={[styles.boxText,{marginRight:4}]}>Add Answer</Text>
-        </Pressable>
-        <Pressable onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
           <Image style={styles.boxImage} source={require('../../assets/Images/Report.png')} />
           <Text style={[styles.boxText,{marginRight:35}]}>Report</Text>
-        </Pressable>
+        </TouchableOpacity>
       </Pressable>: <View></View>}
     </>
   );

@@ -1,7 +1,7 @@
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 const VisibilityInput = () => {
@@ -19,11 +19,11 @@ const VisibilityInput = () => {
             <Text style={{color:'#B6B6B6', fontSize: 11, fontFamily:'Nunito-Medium'}}>Choose your visibility</Text>
           </View>
         )}
-        <Pressable
+        <TouchableOpacity
           style={{height: '100%', width: '18%', justifyContent: 'center'}}
           onPress={() => setIsVisible(!isVisible)}>
-          <FontAwesomeIcon icon={faAngleDown} color="#171717" />
-        </Pressable>
+          <FontAwesomeIcon icon={isVisible?faAngleDown:faAngleUp} color="#171717" />
+        </TouchableOpacity>
         <Text style={styles.headingText}>
           Visibility <Text style={{color: 'red'}}>* </Text>
         </Text>
@@ -31,7 +31,7 @@ const VisibilityInput = () => {
 
       {isVisible ? (
         <View style={styles.secondContainer}>
-          <Pressable
+          <TouchableOpacity
             style={styles.private}
             onPress={() => (
               setVisibilityText('Private'), setIsVisible(!isVisible)
@@ -42,8 +42,8 @@ const VisibilityInput = () => {
                 Only you and people you choose can see your question
               </Text>
             </View>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             style={styles.public}
             onPress={() => (
               setVisibilityText('Public'), setIsVisible(!isVisible)
@@ -54,7 +54,7 @@ const VisibilityInput = () => {
                 Everyone in the forum can see the question
               </Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       ) : (
         <View></View>

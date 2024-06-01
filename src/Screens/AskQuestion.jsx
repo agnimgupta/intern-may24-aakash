@@ -3,10 +3,9 @@ import {
   Text,
   View,
   Dimensions,
-  ScrollView,
-  Pressable,
+  ScrollView, TouchableOpacity
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import ProfileDetails from '../Components/AskQuestion/ProfileDetails';
 import AddQuestionInputs from '../Components/AskQuestion/AddQuestionInputs';
 import Visibility from '../Components/AskQuestion/Visibility';
@@ -16,23 +15,26 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 const {height, width} = Dimensions.get('window');
 
 const AskQuestion = ({navigation}) => {
+
+  const [questionFilled, setQuestionFilled] = useState("");
+  const [visibility, setVisibility] = useState("");
   return (
     <ScrollView
       style={styles.mainContainer}
       showsVerticalScrollIndicator={false}>
       <View style={styles.firstContainer}>
-        <Pressable onPress={() => navigation.navigate('HomeScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
           <FontAwesomeIcon icon={faArrowLeft} size={22} />
-        </Pressable>
+        </TouchableOpacity>
         <Text style={styles.headingText}>Ask your question</Text>
       </View>
       <ProfileDetails />
-      <AddQuestionInputs />
-      <Visibility />
-      <Pressable
+      <AddQuestionInputs questionFilled={questionFilled} />
+      <Visibility visibility={visibility} />
+      <TouchableOpacity
         onPress={() => navigation.navigate('AskQuestionCongratulations')}>
         <ProceedButton navigation={navigation} />
-      </Pressable>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

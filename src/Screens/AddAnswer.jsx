@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
 import ProfileDetails from '../Components/AddAnswer/ProfileDetails';
@@ -16,9 +16,9 @@ const AddAnswer = ({navigation}) => {
     <View style={styles.mainContainer} showsVerticalScrollIndicator={false}>
       <View>
         <View style={styles.firstContainer}>
-          <Pressable onPress={() => navigation.navigate('HomeScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
             <FontAwesomeIcon icon={faArrowLeft} size={22} />
-          </Pressable>
+          </TouchableOpacity>
           <Text style={styles.headingText}>Write answer</Text>
         </View>
         <ProfileDetails />
@@ -29,9 +29,9 @@ const AddAnswer = ({navigation}) => {
         </View>
       </View>
 
-      <Pressable onPress={() => navigation.navigate('AddAnswerCongratulations')}>
+      <TouchableOpacity onPress={() => navigation.navigate('AddAnswerCongratulations')}>
         <ProceedButton />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };

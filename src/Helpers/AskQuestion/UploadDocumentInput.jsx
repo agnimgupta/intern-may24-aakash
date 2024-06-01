@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import DocumentPicker from 'react-native-document-picker';
 
@@ -32,12 +32,12 @@ const UploadDocumentInput = () => {
           <Text style={styles.textInput}>Upload images or videos or files</Text>
         )}
       </View>
-      <Pressable onPress={selectFile}>
+      <TouchableOpacity onPress={selectFile}>
         <Image
           style={{ height: 20, width: 20, resizeMode: 'contain' }}
           source={require('../../assets/Images/AttachIcon.png')}
         />
-      </Pressable>
+      </TouchableOpacity>
       <Text style={styles.headingText}>Upload Documents</Text>
     </View>
   );

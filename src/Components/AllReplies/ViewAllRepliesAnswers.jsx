@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Text, Pressable, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -21,9 +21,9 @@ const ViewAllRepliesAnswers = ({setVisible}) => {
               <Text style={styles.days}>5 days ago</Text>
           </View>
         </View>
-        <Pressable onPress={() => setIsCliked(!isClicked)}>
+        <TouchableOpacity onPress={() => setIsCliked(!isClicked)}>
           <FontAwesomeIcon icon={faEllipsisV} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.answerBox}>
@@ -33,18 +33,18 @@ const ViewAllRepliesAnswers = ({setVisible}) => {
 
 
       {isClicked ? <View style={styles.floatingBox}>
-        <Pressable style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
+        <TouchableOpacity style={[styles.miniBox, {borderBottomWidth:1, borderBottomColor:'#EDEDED'}]}>
           <Image style={[styles.boxImage, {height:15, width:11}]} source={require('../../assets/Images/SaveImageLong.png')} />
           <Text style={[styles.boxText, {marginRight:8}]}>Save Answer</Text>
-        </Pressable>
-        <Pressable style={[styles.miniBox, ]}>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.miniBox, ]}>
           <Image style={[styles.boxImage, {width:20, height:13}]} source={require('../../assets/Images/Flower.png')} />
           <Text style={[styles.boxText,{marginRight:30}]}>Send Tips</Text>
-        </Pressable>
-        <Pressable onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setVisible(true)} style={[styles.miniBox, {borderTopWidth:1, borderTopColor:'#EDEDED'} ]}>
           <Image style={[styles.boxImage, {width:16, height:15}]} source={require('../../assets/Images/Report.png')} />
           <Text style={[styles.boxText,{marginRight:45}]}>Report</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View> : <View></View>}
     </Pressable>
   )

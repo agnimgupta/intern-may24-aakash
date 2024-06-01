@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Text, Pressable, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -19,9 +19,9 @@ const ForumAnswerBox = () => {
             <Text style={styles.days}>5 days ago</Text>
           </View>
         </View>
-        <Pressable onPress={() => setIsCliked(!isClicked)}>
+        <TouchableOpacity onPress={() => setIsCliked(!isClicked)}>
           <FontAwesomeIcon icon={faEllipsisV} />
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.answerBox}>
@@ -35,7 +35,7 @@ const ForumAnswerBox = () => {
       </View>
 
       {isClicked ? <View style={styles.floatingBox}>
-          <View
+          <TouchableOpacity
             style={[
               styles.miniBox,
               
@@ -45,8 +45,8 @@ const ForumAnswerBox = () => {
               source={require('../../assets/Images/SaveImageLong.png')}
             />
             <Text style={[styles.boxText, {marginRight: 10}]}>Save Answer</Text>
-          </View>
-          <View
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[
               styles.miniBox,
               {borderTopWidth: 1, borderTopColor: '#EDEDED'},
@@ -56,7 +56,7 @@ const ForumAnswerBox = () => {
               source={require('../../assets/Images/Report.png')}
             />
             <Text style={[styles.boxText, {marginRight: 45}]}>Report</Text>
-          </View>
+          </TouchableOpacity>
         </View> : <View></View>}
         
     </Pressable>

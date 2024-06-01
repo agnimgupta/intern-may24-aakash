@@ -2,10 +2,9 @@ import {
   StyleSheet,
   Dimensions,
   View,
-  ScrollView,
-  Pressable,
-  Modal,
+  ScrollView, Modal,
   Text,
+  TouchableOpacity
 } from 'react-native';
 import React, { useState } from 'react';
 import Navbar from '../Components/ForumMain/Navbar';
@@ -41,21 +40,21 @@ const ForumMainPage = ({navigation}) => {
           );
         })}
       </ScrollView>
-      <Pressable onPress={() => navigation.navigate('AskQuestion')}>
+      <TouchableOpacity onPress={() => navigation.navigate('AskQuestion')}>
         <FloatBtnAskQuestion navigation={navigation} name="Ask Question" />
-      </Pressable>
+      </TouchableOpacity>
 
       <Modal transparent={true} animationType="slide" visible={visible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Pressable onPress={() => setVisible(false)} style={{paddingTop: 10, alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => setVisible(false)} style={{paddingTop: 10, alignItems: 'center'}}>
               <View
                 style={{
                   borderTopWidth: 2,
                   borderColor: '#D6D6D6',
                   width: 40,
                 }}></View>
-            </Pressable>
+            </TouchableOpacity>
             <View style={{marginTop: 15}}>
               <Text
                 style={{
@@ -124,7 +123,7 @@ const ForumMainPage = ({navigation}) => {
               </View>
             </View>
 
-            {button ? <Pressable style={styles.buttonContainer}>
+            {button ? <TouchableOpacity style={styles.buttonContainer}>
               <Text
                 style={{
                   color: 'white',
@@ -133,7 +132,7 @@ const ForumMainPage = ({navigation}) => {
                 }}>
                 Submit
               </Text>
-            </Pressable> : <View></View>}
+            </TouchableOpacity> : <View></View>}
           </View>
         </View>
       </Modal>

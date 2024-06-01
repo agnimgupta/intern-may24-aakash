@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ const TopFeedSearchButtons = () => {
   return (
     <>
       <View style={styles.mainContainer}>
-        <Pressable onPress={() => setIndex(1)} style={styles.buttonContainers}>
+        <TouchableOpacity onPress={() => setIndex(1)} style={styles.buttonContainers}>
           <Text
             style={[
               styles.btnText,
@@ -18,8 +18,8 @@ const TopFeedSearchButtons = () => {
             ]}>
             Top Feed
           </Text>
-        </Pressable>
-        <Pressable onPress={() => setIndex(2)} style={styles.buttonContainers}>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setIndex(2)} style={styles.buttonContainers}>
           {index===2? <FontAwesomeIcon icon={faSearch} color='#3A643B' />: <FontAwesomeIcon icon={faSearch} color='#B6B6B6' />}
           <Text
             style={[
@@ -30,7 +30,7 @@ const TopFeedSearchButtons = () => {
             ]}>
             Search
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <View style={styles.linesContainer}>
         <View

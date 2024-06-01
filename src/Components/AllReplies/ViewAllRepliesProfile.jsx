@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ const ViewAllRepliesProfile = ({answerButtonClicked, setanswerButtonClicked, pro
           </View>
         </View>
         <View>
-          <Pressable onPress={() => setanswerButtonClicked(!answerButtonClicked)}><FontAwesomeIcon icon={faEllipsisV} /></Pressable>
+          <TouchableOpacity onPress={() => setanswerButtonClicked(!answerButtonClicked)}><FontAwesomeIcon icon={faEllipsisV} /></TouchableOpacity>
         </View>
       </View>
     

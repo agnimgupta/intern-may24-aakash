@@ -4,10 +4,10 @@ import TextInputType1 from '../../Helpers/AskQuestion/TextInputType1'
 import TextInputType2 from '../../Helpers/AskQuestion/TextInputType2'
 import UploadDocumentInput from '../../Helpers/AskQuestion/UploadDocumentInput'
 
-const AddQuestionInputs = () => {
+const AddQuestionInputs = ({questionFilled}) => {
   return (
     <View>
-      <TextInputType1 />
+      <TextInputType1 questionFilled={questionFilled} />
       <TextInputType2 placeholder="Eg. #doctors, #ayurveda" name="Add Description" />
       <UploadDocumentInput/>
     </View>

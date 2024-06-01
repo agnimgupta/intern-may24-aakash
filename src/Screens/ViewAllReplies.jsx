@@ -5,7 +5,8 @@ import {
   View,
   Image,
   Pressable,
-  Modal
+  Modal,
+  TouchableOpacity
 } from 'react-native';
 import React, { useState } from 'react';
 import ViewAllRepliesNavBar from '../Components/AllReplies/ViewAllRepliesNavBar';
@@ -40,7 +41,7 @@ const ViewAllReplies = ({navigation}) => {
         </Pressable>
 
         {answerButtonClicked ? <Pressable style={styles.floatingBox}>
-          <Pressable
+          <TouchableOpacity
             style={[
               styles.miniBox,
               {borderBottomWidth: 1, borderBottomColor: '#EDEDED'},
@@ -50,15 +51,15 @@ const ViewAllReplies = ({navigation}) => {
               source={require('../assets/Images/SavePost.png')}
             />
             <Text style={[styles.boxText, {marginRight: 14}]}>Save Post</Text>
-          </Pressable>
-          <Pressable onPress={() => navigation.navigate('AddAnswer',{ profileData, questionData})}  style={[styles.miniBox]}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('AddAnswer',{ profileData, questionData})}  style={[styles.miniBox]}>
             <Image
               style={styles.boxImage}
               source={require('../assets/Images/AddAnswer.png')}
             />
             <Text style={[styles.boxText, {marginRight: 4}]}>Add Answer</Text>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
           onPress={() => setVisible(true)}
             style={[
               styles.miniBox,
@@ -69,7 +70,7 @@ const ViewAllReplies = ({navigation}) => {
               source={require('../assets/Images/Report.png')}
             />
             <Text style={[styles.boxText, {marginRight: 35}]}>Report</Text>
-          </Pressable>
+          </TouchableOpacity>
         </Pressable>: <View></View>}
       </View>
 
@@ -90,19 +91,19 @@ const ViewAllReplies = ({navigation}) => {
         <ViewAllRepliesAnswers setVisible={setVisible} />
         <ViewAllRepliesAnswers setVisible={setVisible} />
       </ScrollView>
-      <Pressable onPress={() => navigation.navigate('AddAnswer', {profileData, questionData})}><FloatBtnAskQuestion navigation={navigation} name="Answer" /></Pressable>
+      <TouchableOpacity onPress={() => navigation.navigate('AddAnswer', {profileData, questionData})}><FloatBtnAskQuestion navigation={navigation} name="Answer" /></TouchableOpacity>
 
       <Modal transparent={true} animationType="slide" visible={visible}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Pressable onPress={() => setVisible(false)} style={{paddingTop: 10, alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => setVisible(false)} style={{paddingTop: 10, alignItems: 'center'}}>
               <View
                 style={{
                   borderTopWidth: 2,
                   borderColor: '#D6D6D6',
                   width: 40,
                 }}></View>
-            </Pressable>
+            </TouchableOpacity>
             <View style={{marginTop: 15}}>
               <Text
                 style={{
@@ -171,7 +172,7 @@ const ViewAllReplies = ({navigation}) => {
               </View>
             </View>
 
-            {button ? <Pressable style={styles.buttonContainer}>
+            {button ? <TouchableOpacity style={styles.buttonContainer}>
               <Text
                 style={{
                   color: 'white',
@@ -180,7 +181,7 @@ const ViewAllReplies = ({navigation}) => {
                 }}>
                 Submit
               </Text>
-            </Pressable> : <View></View>}
+            </TouchableOpacity> : <View></View>}
           </View>
         </View>
       </Modal>

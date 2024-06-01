@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +22,7 @@ const ForumProfile = ({setisCliked, isCliked}) => {
           </View>
         </View>
         <View>
-          <Pressable onPress={() => setisCliked(!isCliked)}><FontAwesomeIcon icon={faEllipsisV} /></Pressable>
+          <TouchableOpacity onPress={() => setisCliked(!isCliked)}><FontAwesomeIcon icon={faEllipsisV} /></TouchableOpacity>
         </View>
       </View>
   )
